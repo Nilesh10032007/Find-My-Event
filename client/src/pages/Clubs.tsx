@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import Footer from '../components/Footer';
@@ -41,7 +41,7 @@ export default function Clubs() {
       <style>{`
         .premium-hero-heading {
           font-family: 'Inter', 'SF Pro Display', 'Neue Haas Grotesk', sans-serif;
-          font-weight: 800;
+          font-weight: 600;
           text-align: center;
           line-height: 0.98;
           color: #111111;
@@ -128,89 +128,46 @@ export default function Clubs() {
           </div>
         </section>
 
-        {/* Dynamic Infinite Marquee */}
-        <div style={{ width: '100vw', background: 'linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6)', padding: '1.5rem 0', transform: 'rotate(-2deg) scale(1.05)', overflow: 'hidden', whiteSpace: 'nowrap', display: 'flex', position: 'relative', zIndex: 2, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-          <motion.div
-            animate={{ x: [0, -1035] }}
-            transition={{ repeat: Infinity, duration: 10, ease: 'linear' }}
-            style={{ display: 'flex', gap: '2rem', fontSize: '2rem', fontWeight: 900, color: '#fff', textTransform: 'uppercase', letterSpacing: '2px' }}
-          >
-            {[...Array(6)].map((_, i) => (
-              <React.Fragment key={i}>
-                <span>DISCOVER</span> <span>•</span>
-                <span>CREATE</span> <span>•</span>
-                <span style={{ color: 'transparent', WebkitTextStroke: '1px #fff' }}>CONNECT</span> <span>•</span>
-                <span>INNOVATE</span> <span>•</span>
-              </React.Fragment>
-            ))}
-          </motion.div>
-        </div>
 
         {/* Interactive Bento Grid Section */}
-        <section style={{ maxWidth: '1400px', margin: '8rem auto 6rem', padding: '0 2rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem' }}>
-            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.03em', lineHeight: 1, margin: 0 }}>
-              ALL CLUBS.
+        <section style={{ maxWidth: '1440px', margin: '4rem auto 6rem', padding: '0 2.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '3.5rem', fontWeight: 600, fontFamily: "'Inter', sans-serif", color: '#111', letterSpacing: '-0.03em', lineHeight: 1, margin: 0 }}>
+              All Clubs
             </h2>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2.5rem' }}>
-            {clubs.map((club, i) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
+            {clubs.map((club) => (
               <motion.div 
                 key={club.id}
                 onClick={() => window.location.hash = `#club-detail-${club.id}`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
                 whileHover="hover"
-                style={{ position: 'relative', cursor: 'pointer', borderRadius: '32px', overflow: 'hidden', height: '480px', background: '#111', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
+                initial="initial"
+                variants={{
+                  initial: { y: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.05)' },
+                  hover: { y: -6, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }
+                }}
+                style={{ background: '#f8f9fa', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer' }}
               >
                 {/* Image Background */}
-                <motion.div 
-                  variants={{ hover: { scale: 1.08, filter: 'brightness(0.7)' } }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
-                >
-                  <img src={club.logo || '/club-images/Rectangle 31.png'} alt={club.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </motion.div>
-                
-                {/* Vibrant Hover Overlay (Bottom Gradient) */}
-                <motion.div 
-                  variants={{ hover: { opacity: 1, background: `linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%)` } }}
-                  initial={{ opacity: 1, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%)' }}
-                  transition={{ duration: 0.4 }}
-                  style={{ position: 'absolute', inset: 0, zIndex: 1 }}
-                />
-
-                {/* Pill Tag */}
-                <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', color: '#000', padding: '0.5rem 1rem', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', zIndex: 2 }}>
-                  {club.type || 'Club'}
+                <div style={{ aspectRatio: '1 / 1.414', width: '100%', position: 'relative', overflow: 'hidden', background: '#111' }}>
+                  <motion.img 
+                    variants={{ initial: { scale: 1 }, hover: { scale: 1.05 } }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    src={club.logo || '/club-images/Rectangle 31.png'} alt={club.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  />
                 </div>
 
                 {/* Content Container */}
-                <motion.div 
-                  variants={{ hover: { y: -10 } }}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
-                  style={{ position: 'absolute', bottom: '0', left: '0', right: '0', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', zIndex: 10 }}
-                >
-                  <h3 style={{ fontSize: '1.8rem', fontWeight: 900, color: '#fff', margin: 0, lineHeight: 1.1, textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}>
+                <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#111', lineHeight: 1.3, margin: '0 0 0.4rem 0' }}>
                     {club.name}
                   </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem', fontWeight: 500, margin: 0 }}>
-                    {club.description || 'Backs visionary founders with capital and robust support.'}
+                  <p style={{ color: '#6B7280', fontSize: '0.85rem', fontWeight: 500, margin: 0, lineHeight: 1.5 }}>
+                    {club.description || 'JECRC Incubation Centre backs visionary founders with capital.'}
                   </p>
-                  
-                  {/* Explore Button (Appears on hover) */}
-                  <motion.div 
-                    variants={{ hover: { opacity: 1, y: 0, height: 'auto' } }}
-                    initial={{ opacity: 0, y: 20, height: 0 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff', fontWeight: 800, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '0.5rem' }}
-                  >
-                    Explore Club <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                  </motion.div>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>

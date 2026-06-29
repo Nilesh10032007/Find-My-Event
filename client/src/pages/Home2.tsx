@@ -19,8 +19,8 @@ const Home2 = () => {
     // GSAP Animation for Hero
     if (heroRef.current) {
       const lines = heroRef.current.querySelectorAll('.hero-line');
-      gsap.fromTo(lines, 
-        { opacity: 0, y: 30 }, 
+      gsap.fromTo(lines,
+        { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.2 }
       );
 
@@ -98,25 +98,25 @@ const Home2 = () => {
       <style>{`
         .premium-hero-heading {
           font-family: 'Inter', 'SF Pro Display', 'Neue Haas Grotesk', sans-serif;
-          font-weight: 800;
+          font-weight: 700;
           text-align: center;
           line-height: 0.98;
           color: #111111;
           margin: 0 auto 3rem;
           max-width: 900px;
-          letter-spacing: -1.5px;
+          letter-spacing: -1px;
         }
         @media (min-width: 1200px) {
-          .premium-hero-heading { font-size: 72px; }
+          .premium-hero-heading { font-size: 60px; }
         }
         @media (min-width: 1024px) and (max-width: 1199px) {
-          .premium-hero-heading { font-size: 64px; }
-        }
-        @media (min-width: 768px) and (max-width: 1023px) {
           .premium-hero-heading { font-size: 54px; }
         }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .premium-hero-heading { font-size: 46px; }
+        }
         @media (max-width: 767px) {
-          .premium-hero-heading { font-size: 38px; }
+          .premium-hero-heading { font-size: 34px; }
         }
         .hero-line {
           display: block;
@@ -139,7 +139,7 @@ const Home2 = () => {
           background-color: #49D8F6;
         }
       `}</style>
-      
+
       {/* Hero Section */}
       <section style={{ paddingTop: '8rem', paddingBottom: '4rem', textAlign: 'center', overflow: 'hidden', background: '#FFFFFF' }}>
         <h1 ref={heroRef} className="premium-hero-heading">
@@ -156,32 +156,32 @@ const Home2 = () => {
             </span> up for.
           </span>
         </h1>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3rem', position: 'relative', height: '600px', width: '100%', overflow: 'hidden' }}>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3rem', position: 'relative', height: '500px', width: '100%', overflow: 'hidden' }}>
           {[1, 2, 3, 4, 5].map((item, index) => {
             const offset = (index - activeIndex + 5) % 5;
-            
+
             const isCenter = offset === 0;
             const isAdjRight = offset === 1;
             const isFarRight = offset === 2;
             const isFarLeft = offset === 3;
             const isAdjLeft = offset === 4;
-            
+
             let zIndex = 1;
             let left = '50%';
-            let height = '360px';
-            let width = '18vw';
-            
+            let height = '300px';
+            let width = '15vw';
+
             if (isCenter) {
-              zIndex = 10; left = '50%'; height = '560px'; width = '32vw';
+              zIndex = 10; left = '50%'; height = '480px'; width = '28vw';
             } else if (isAdjLeft) {
-              zIndex = 5; left = '28%'; height = '460px'; width = '26vw';
+              zIndex = 5; left = '28%'; height = '380px'; width = '22vw';
             } else if (isAdjRight) {
-              zIndex = 5; left = '72%'; height = '460px'; width = '26vw';
+              zIndex = 5; left = '72%'; height = '380px'; width = '22vw';
             } else if (isFarLeft) {
-              zIndex = 2; left = '8%'; height = '360px'; width = '22vw';
+              zIndex = 2; left = '10%'; height = '300px'; width = '18vw';
             } else if (isFarRight) {
-              zIndex = 2; left = '92%'; height = '360px'; width = '22vw';
+              zIndex = 2; left = '90%'; height = '300px'; width = '18vw';
             }
 
             return (
@@ -207,10 +207,10 @@ const Home2 = () => {
                   background: '#111'
                 }}
               >
-                <img 
-                  src={`/hero-images/Rectangle 3${item}.png`} 
-                  alt={`Event ${item}`} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                <img
+                  src={`/hero-images/Rectangle 3${item}.png`}
+                  alt={`Event ${item}`}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </motion.div>
             )
@@ -223,16 +223,16 @@ const Home2 = () => {
         <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '2rem' }}>Explore Events Categories</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem' }}>
           {categories.map((cat) => (
-            <motion.div 
+            <motion.div
               key={cat.name}
               whileHover={{ y: -5 }}
-              style={{ 
-                background: '#fff', 
-                borderRadius: '16px', 
-                padding: '1rem', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center', 
+              style={{
+                background: '#fff',
+                borderRadius: '16px',
+                padding: '1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                 aspectRatio: '1',
@@ -241,7 +241,7 @@ const Home2 = () => {
                 cursor: 'pointer'
               }}
             >
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: `linear-gradient(to top, ${cat.color}88, transparent)` }} />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '60%', background: `linear-gradient(to top, ${cat.color}88, transparent)` }} />
               <span style={{ fontSize: '2.5rem', marginBottom: '0.5rem', zIndex: 1 }}>{cat.icon}</span>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, zIndex: 1, textAlign: 'center' }}>{cat.name}</span>
             </motion.div>
@@ -257,16 +257,16 @@ const Home2 = () => {
         </div>
         <div style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '1rem' }}>
           {clubs.map(club => (
-            <div 
-              key={club.id} 
+            <div
+              key={club.id}
               onClick={() => window.location.hash = `#club-detail-${club.id}`}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', minWidth: '120px', cursor: 'pointer' }}
             >
-              <motion.img 
+              <motion.img
                 whileHover={{ scale: 1.05 }}
-                src={club.logo} 
-                alt={club.name} 
-                style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', background: '#e2e8f0', boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }} 
+                src={club.logo}
+                alt={club.name}
+                style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', background: '#e2e8f0', boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
               />
               <span style={{ fontWeight: 600 }}>{club.name}</span>
             </div>
@@ -278,17 +278,17 @@ const Home2 = () => {
       <div style={{ background: '#FFFFFF' }}>
         <section style={{ maxWidth: '1440px', margin: '0 auto', padding: '4rem 2.5rem 6rem' }}>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '2.5rem', color: '#111' }}>All events</h2>
-          
+
           {/* Filters */}
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1.5rem', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '0.5rem', marginBottom: '2.5rem', borderBottom: '1px solid #e2e8f0', width: '100%' }}>
             {filterCategories.map(cat => (
-              <button 
+              <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                style={{ 
+                style={{
                   background: 'none',
                   border: 'none',
-                  borderBottom: cat === activeCategory ? '2px solid #8B5CF6' : '2px solid transparent', 
+                  borderBottom: cat === activeCategory ? '2px solid #8B5CF6' : '2px solid transparent',
                   color: cat === activeCategory ? '#111' : '#94a3b8',
                   fontWeight: 700,
                   fontSize: '0.95rem',
@@ -303,71 +303,51 @@ const Home2 = () => {
             ))}
           </div>
 
-        {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(410px, 1fr))', gap: '2.5rem' }}>
-          {filteredEvents.map(event => (
-            <motion.div 
-              key={event.id}
-              onClick={() => window.location.hash = `#event-detail-${event.id}`}
-              whileHover="hover"
-              initial="initial"
-              variants={{
-                initial: { y: 0, boxShadow: '0 10px 30px rgba(0,0,0,0.04)' },
-                hover: { y: -12, boxShadow: '0 40px 80px rgba(139,92,246,0.15)' }
-              }}
-              style={{ background: '#fff', borderRadius: '24px', overflow: 'hidden', border: '1px solid rgba(226,232,240,0.8)', display: 'flex', flexDirection: 'column', height: '620px', position: 'relative', cursor: 'pointer' }}
-            >
-              <div style={{ height: '460px', position: 'relative', overflow: 'hidden' }}>
-                <motion.img 
-                  variants={{ initial: { scale: 1 }, hover: { scale: 1.08 } }}
-                  transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
-                  src={event.img} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                />
-                {/* Overlay gradient */}
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 35%)' }} />
-                
-                {/* Floating Date Badge */}
-                <div style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(12px)', padding: '0.6rem 1rem', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#111', fontSize: '0.8rem', fontWeight: 800, boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  {event.date}
+          {/* Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '2rem' }}>
+            {filteredEvents.map(event => (
+              <motion.div
+                key={event.id}
+                onClick={() => window.location.hash = `#event-detail-${event.id}`}
+                whileHover="hover"
+                initial="initial"
+                variants={{
+                  initial: { y: 0, boxShadow: '0 4px 12px rgba(0,0,0,0.05)' },
+                  hover: { y: -6, boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }
+                }}
+                style={{ background: '#f8f9fa', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer' }}
+              >
+                <div style={{ height: '380px', position: 'relative', overflow: 'hidden' }}>
+                  <motion.img
+                    variants={{ initial: { scale: 1 }, hover: { scale: 1.05 } }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    src={event.img} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 </div>
 
-                {/* Floating Price Badge */}
-                <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: '#8B5CF6', color: '#fff', padding: '0.6rem 1.25rem', borderRadius: '999px', fontSize: '0.85rem', fontWeight: 900, boxShadow: '0 8px 24px rgba(139,92,246,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {event.price}
-                </div>
-              </div>
+                <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <div style={{ color: '#007BFF', fontSize: '0.85rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.6rem' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    {event.date} | 4:45 am
+                  </div>
 
-              <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between', background: '#fff', zIndex: 2, position: 'relative' }}>
-                <div>
-                  <h3 style={{ fontSize: '1.4rem', fontWeight: 900, marginBottom: '0.5rem', color: '#0f172a', lineHeight: 1.2, letterSpacing: '-0.03em' }}>{event.title}</h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#111', lineHeight: 1.3, marginBottom: '0.6rem' }}>{event.title}</h3>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#6B7280', fontSize: '0.85rem', fontWeight: 500, marginBottom: '1.25rem' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                     {event.location}
                   </div>
-                </div>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                     <div style={{ display: 'flex', marginLeft: '0.5rem' }}>
-                       {[1,2,3].map(i => <img key={i} src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${event.id}${i}`} alt="avatar" style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #fff', marginLeft: '-0.75rem', background: '#f1f5f9', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }} />)}
-                     </div>
-                     <span style={{ fontSize: '0.85rem', color: '#475569', fontWeight: 700, marginLeft: '0.5rem' }}>+69 going</span>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6B7280', fontSize: '0.9rem', fontWeight: 500, marginTop: 'auto' }}>
+                    <span>69 Seats left</span>
+                    <span style={{ color: '#D1D5DB' }}>|</span>
+                    <span style={{ color: '#E11D48', fontWeight: 700 }}>{event.price}</span>
                   </div>
-                  
-                  <motion.div 
-                    variants={{ initial: { x: -10, opacity: 0 }, hover: { x: 0, opacity: 1 } }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    style={{ color: '#8B5CF6', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 800, fontSize: '0.95rem' }}
-                  >
-                    Explore <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                  </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+              </motion.div>
+            ))}
+          </div>
+        </section>
       </div>
 
       {/* Footer (Dark variant by default from component) */}
