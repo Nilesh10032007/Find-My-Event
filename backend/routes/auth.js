@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -59,10 +60,42 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     const mailOptions = {
-      from: `"Find My Event" <${process.env.GMAIL_USER}>`,
+      from: `"Eventum" <${process.env.GMAIL_USER}>`,
       to: email,
-      subject: 'Your Registration OTP',
+      subject: 'Verify your email - Eventum',
       text: `Your OTP for registration is: ${otp}. It expires in 10 minutes.`,
+      html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0a0a0a; padding: 60px 20px; color: #ffffff;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #ffffff; font-size: 32px; margin: 0; font-weight: 700; letter-spacing: 1px;">
+            Eventum <span style="color: #a855f7;">●</span>
+          </h1>
+        </div>
+        
+        <div style="max-width: 450px; margin: 0 auto; background-color: #151515; border-radius: 12px; padding: 40px 30px; border: 1px solid #2a2a2a; border-top: 3px solid #a855f7;">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="font-size: 28px; margin-bottom: 15px;">🔒</div>
+            <h2 style="font-size: 22px; margin: 0 0 12px 0; color: #ffffff; font-weight: 600;">Verify your email</h2>
+            <p style="color: #a0a0a0; font-size: 14px; margin: 0; line-height: 1.5;">Enter this verification code in Eventum to securely sign in.</p>
+          </div>
+
+          <div style="background-color: #1c1c1c; border: 1px solid #333333; border-radius: 8px; padding: 25px; text-align: center; margin-bottom: 25px;">
+            <p style="color: #666666; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 15px 0; font-weight: 700;">Verification Code</p>
+            <h1 style="color: #a855f7; font-size: 36px; letter-spacing: 6px; margin: 0; font-weight: 700; text-shadow: 0 0 10px rgba(168, 85, 247, 0.2);">${otp}</h1>
+          </div>
+
+          <div style="text-align: center;">
+            <p style="color: #777777; font-size: 12px; margin: 0;">
+              Code expires in <span style="color: #a855f7; font-weight: 600;">10 minutes</span>
+            </p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <p style="color: #444444; font-size: 12px; margin: 0;">© ${new Date().getFullYear()} Eventum. Connect. Discover.</p>
+        </div>
+      </div>
+      `
     };
 
     await transporter.sendMail(mailOptions);

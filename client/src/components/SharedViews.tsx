@@ -432,7 +432,7 @@ export const RegisterView = ({ event, onBack }: { event: any, onBack: () => void
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-           <h2 style={{ color: '#2E1065', fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>
+           <h2 style={{ color: '#111827', fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>
               Registration form
            </h2>
            <button type="button" onClick={onBack} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 0 }}>
@@ -447,28 +447,28 @@ export const RegisterView = ({ event, onBack }: { event: any, onBack: () => void
           <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
              {/* Name */}
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#6D28D9' }}>Full Name</label>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Full Name</label>
                 <input required type="text" placeholder="Full Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
                   style={{ width: '100%', padding: '0.85rem 1rem', background: formData.name ? '#ffffff' : '#F5F3FF', border: formData.name ? '1px solid #8B5CF6' : '1px solid transparent', borderRadius: '8px', color: '#111', outline: 'none', fontSize: '0.95rem', fontFamily: 'inherit', transition: 'all 0.2s' }} />
              </div>
 
              {/* Phone */}
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#6D28D9' }}>Mobile Number</label>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Mobile Number</label>
                 <input required type="text" placeholder="+91 98765-12345" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
                   style={{ width: '100%', padding: '0.85rem 1rem', background: formData.phone ? '#ffffff' : '#F5F3FF', border: formData.phone ? '1px solid #8B5CF6' : '1px solid transparent', borderRadius: '8px', color: '#111', outline: 'none', fontSize: '0.95rem', fontFamily: 'inherit', transition: 'all 0.2s' }} />
              </div>
 
              {/* Email */}
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#6D28D9' }}>Email Address</label>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Email Address</label>
                 <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
                   style={{ width: '100%', padding: '0.85rem 1rem', background: formData.email ? '#ffffff' : '#F5F3FF', border: formData.email ? '1px solid #8B5CF6' : '1px solid transparent', borderRadius: '8px', color: '#111', outline: 'none', fontSize: '0.95rem', fontFamily: 'inherit', transition: 'all 0.2s' }} />
              </div>
 
              {/* Course */}
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'relative' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#6D28D9' }}>Course</label>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Course</label>
                 <select value={(formData as any).course || ''} onChange={e => setFormData({...formData, course: e.target.value} as any)}
                   style={{ width: '100%', padding: '0.85rem 1rem', background: (formData as any).course ? '#ffffff' : '#F5F3FF', border: (formData as any).course ? '1px solid #8B5CF6' : '1px solid transparent', borderRadius: '8px', color: (formData as any).course ? '#111' : '#8B5CF6', outline: 'none', fontSize: '0.95rem', fontFamily: 'inherit', transition: 'all 0.2s', appearance: 'none' }}>
                   <option value="" disabled>Select an option</option>
@@ -481,7 +481,7 @@ export const RegisterView = ({ event, onBack }: { event: any, onBack: () => void
 
              {/* Invite Team Member */}
              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'relative' }}>
-                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#6D28D9' }}>Invite Team Member</label>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#111827' }}>Invite Team Member</label>
                 <input type="email" placeholder="Team Member Email Address" value={formData.team} onChange={e => setFormData({...formData, team: e.target.value})}
                   style={{ width: '100%', padding: '0.85rem 1rem', background: formData.team ? '#ffffff' : '#F5F3FF', border: formData.team ? '1px solid #8B5CF6' : '1px solid transparent', borderRadius: '8px', color: '#111', outline: 'none', fontSize: '0.95rem', fontFamily: 'inherit', transition: 'all 0.2s' }} />
                 <ChevronDown size={16} color="#6b7280" style={{ position: 'absolute', right: '1rem', top: '2.4rem', pointerEvents: 'none' }} />
@@ -495,7 +495,7 @@ export const RegisterView = ({ event, onBack }: { event: any, onBack: () => void
                }}>
                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                    <div>
-                     <p style={{ color: '#2E1065', fontWeight: 700, fontSize: '0.95rem', margin: 0 }}>Select Tickets</p>
+                     <p style={{ color: '#111827', fontWeight: 700, fontSize: '0.95rem', margin: 0 }}>Select Tickets</p>
                      <p style={{ color: '#6b7280', fontSize: '0.8rem', margin: '0.2rem 0 0 0' }}>Max {event.pricing?.maxTicketsPerUser || 10} per user</p>
                    </div>
                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', background: '#111', borderRadius: '10px', padding: '0.4rem 1rem' }}>

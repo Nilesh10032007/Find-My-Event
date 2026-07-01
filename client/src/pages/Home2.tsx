@@ -91,7 +91,7 @@ const Home2 = () => {
     fetchData();
   }, []);
 
-  const filteredEvents = eventsList.filter(ev => activeCategory === 'All' || ev.category === activeCategory).slice(0, 6);
+  const filteredEvents = eventsList.filter(ev => activeCategory === 'All' || ev.category === activeCategory);
 
   return (
     <div className="home2-page" style={{ background: '#FFFFFF', minHeight: '100vh', color: '#111', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
