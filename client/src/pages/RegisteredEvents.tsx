@@ -23,19 +23,19 @@ export default function RegisteredEvents() {
     }
   };
 
-  const parseDateInfo = (dateStr: string) => {
+  const parseDateInfo = (dateStr: string, ev?: any) => {
     const d = new Date(dateStr);
-    if (isNaN(d.getTime())) {
+    if (!dateStr || isNaN(d.getTime())) {
       // Fallback if date is just a random string
       return {
-        day: '16',
-        month: 'June',
-        shortMonth: 'JUNE',
-        weekday: 'Wednesday',
-        fullDate: dateStr || 'Wednesday, 16 June',
-        time: '3:30 PM - 4:30 PM', // Default fallback
-        timelineDate: '20 March',
-        timelineDay: 'Monday'
+        day: '📅',
+        month: '',
+        shortMonth: 'DATE',
+        weekday: '',
+        fullDate: dateStr || 'TBA',
+        time: ev?.time || 'TBA',
+        timelineDate: dateStr || 'TBA',
+        timelineDay: ''
       };
     }
     const day = d.getDate();
@@ -170,7 +170,7 @@ export default function RegisteredEvents() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', width: '100%' }}>
               {filteredEvents.map((ev, i) => {
-                const dateInfo = parseDateInfo(ev.date || ev.startDate);
+                const dateInfo = parseDateInfo(ev.date || ev.startDate, ev);
                 
                 return (
                   <motion.div 
