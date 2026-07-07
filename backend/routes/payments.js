@@ -87,6 +87,8 @@ router.post('/create-order', requireAuth, async (req, res) => {
       amount: pricing.ticketPrice * ticketsCount,
       ticketsCount: ticketsCount,
       customAnswers: req.body.customAnswers || [],
+      teamSize: req.body.teamSize || 1,
+      teamMembers: req.body.teamMembers || [],
       status: 'pending'
     });
 

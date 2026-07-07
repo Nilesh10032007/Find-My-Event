@@ -613,52 +613,58 @@ router.get('/:id/participants', requireAuth, async (req, res) => {
     const paidRegistrations = await PaidRegistration.find({ event: event._id }).populate('user', 'name email phone avatar').lean();
     
     // Fetch free registrations to get custom answers
-    const freeRegistrations = await Registration.find({ event: event._id }).lean();
-    const freeAnswersMap = {};
-    freeRegistrations.forEach(r => {
-      freeAnswersMap[r.user.toString()] = r.customAnswers || [];
-    });
+    const freeRegistrations = await Registration.find({ event: event._id }).populate('user', 'name email phone avatar').lean();
 
     // Combine them
     const allParticipants = [];
     const attendedSet = new Set((event.attendedUsers || []).map(id => id.toString()));
     
-    if (event.registeredUsers) {
-      event.registeredUsers.forEach(u => {
-        if (!u) return;
-        allParticipants.push({
-          id: u._id,
-          name: u.name,
-          email: u.email,
-          phone: u.phone,
-          avatar: u.avatar,
-          type: 'Free',
-          status: 'Registered',
-          answers: freeAnswersMap[u._id.toString()] || [],
-          checkedIn: attendedSet.has(u._id.toString())
-        });
-      });
-    }
-
-    if (paidRegistrations) {
-      paidRegistrations.forEach(r => {
+    freeRegistrations.forEach(r => {
         if (!r.user) return;
-        // Avoid duplicates if they are somehow in both
-        if (!allParticipants.find(p => p.id.toString() === r.user._id.toString())) {
-          allParticipants.push({
+        const members = r.teamMembers && r.teamMembers.length > 0 
+            ? r.teamMembers 
+            : [{ name: r.user.name, email: r.user.email, phone: r.user.phone, customAnswers: r.customAnswers }];
+            
+        allParticipants.push({
             id: r.user._id,
-            name: r.user.name,
-            email: r.user.email,
-            phone: r.user.phone,
+            name: members[0].name,
+            email: members[0].email,
+            phone: members[0].phone,
+            avatar: r.user.avatar,
+            type: 'Free',
+            status: r.status || 'Registered',
+            answers: members[0].customAnswers || [],
+            checkedIn: attendedSet.has(r.user._id.toString()),
+            isTeam: members.length > 1,
+            teamSize: r.teamSize || members.length,
+            teamMembers: members // Array of all members including leader
+        });
+    });
+
+    paidRegistrations.forEach(r => {
+        if (!r.user) return;
+        const members = r.teamMembers && r.teamMembers.length > 0 
+            ? r.teamMembers 
+            : [{ name: r.user.name, email: r.user.email, phone: r.user.phone, customAnswers: r.customAnswers }];
+            
+        // Avoid duplicates if they are somehow in both (only check leaders to be safe)
+        if (allParticipants.find(p => p.id.toString() === r.user._id.toString())) return;
+
+        allParticipants.push({
+            id: r.user._id,
+            name: members[0].name,
+            email: members[0].email,
+            phone: members[0].phone,
             avatar: r.user.avatar,
             type: 'Paid',
-            status: r.paymentStatus,
-            answers: r.customAnswers || [],
-            checkedIn: attendedSet.has(r.user._id.toString())
-          });
-        }
-      });
-    }
+            status: r.status || r.paymentStatus || 'Completed',
+            answers: members[0].customAnswers || [],
+            checkedIn: attendedSet.has(r.user._id.toString()),
+            isTeam: members.length > 1,
+            teamSize: r.teamSize || members.length,
+            teamMembers: members
+        });
+    });
 
     res.json(allParticipants);
   } catch (error) {
@@ -745,7 +751,9 @@ router.post('/:id/register', requireAuth, async (req, res) => {
       user: req.user._id,
       event: event._id,
       eventModel: modelName,
-      customAnswers: req.body.customAnswers || []
+      customAnswers: req.body.customAnswers || [],
+      teamSize: req.body.teamSize || 1,
+      teamMembers: req.body.teamMembers || []
     });
 
     // Generate QR Token and Image
