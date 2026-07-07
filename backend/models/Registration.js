@@ -42,7 +42,20 @@ const registrationSchema = new mongoose.Schema({
   },
   qrToken: {
     type: String
-  }
+  },
+  teamSize: {
+    type: Number,
+    default: 1
+  },
+  teamMembers: [{
+    name: String,
+    email: String,
+    phone: String,
+    customAnswers: [{
+      question: String,
+      answer: mongoose.Schema.Types.Mixed
+    }]
+  }]
 }, { timestamps: true });
 
 // Prevent multiple active registrations for the same user and event

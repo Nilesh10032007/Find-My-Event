@@ -43,7 +43,24 @@ const paidRegistrationSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'completed', 'failed'],
     default: 'pending'
-  }
+  },
+  teamSize: {
+    type: Number,
+    default: 1
+  },
+  teamMembers: [{
+    name: String,
+    email: String,
+    phone: String,
+    customAnswers: [{
+      question: String,
+      answer: mongoose.Schema.Types.Mixed
+    }]
+  }],
+  customAnswers: [{
+    question: String,
+    answer: mongoose.Schema.Types.Mixed
+  }]
 }, { timestamps: true });
 
 // Prevent multiple successful registrations for the same user and event
