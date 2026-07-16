@@ -96,7 +96,7 @@ export default function Clubs() {
           text-align: center;
           line-height: 0.98;
           color: #111111;
-          margin: 0 auto 3rem;
+          margin: 0 auto 1rem;
           max-width: 900px;
           padding: 0 1rem;
           letter-spacing: -1.5px;
@@ -199,7 +199,7 @@ export default function Clubs() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         
         {/* Heading Section */}
-        <section style={{ padding: '9rem 1.5rem 3rem', textAlign: 'center' }}>
+        <section style={{ padding: '9rem 1.5rem 1rem', textAlign: 'center' }}>
           <h1 ref={heroRef} className="premium-hero-heading">
             <span className="hero-line">
               JECRC <span style={{ position: 'relative', display: 'inline-block', fontStyle: 'italic', zIndex: 1, marginLeft: '0.1em' }}>
